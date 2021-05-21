@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: universal-tfserving-deployment
+  labels:
+    app: universal-tfserving
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: universal-tfserving
+  template:
+    metadata:
+      labels:
+        app: universal-tfserving
+    spec:
+      containers:
+        - name: universal-tfserving
+          image: genietalk/universal_tfserving:4.0
+          ports:
+            - containerPort: 8501
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: universal-tfserving-service
+spec:
+  selector:
+    app: universal-tfserving
+  ports:
+    - protocol: TCP
+      port: 8501
+      targetPort: 8501
