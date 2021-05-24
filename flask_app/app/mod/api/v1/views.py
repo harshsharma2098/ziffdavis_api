@@ -15,6 +15,7 @@ def predict():
     userdetails = request.json.get("userdetails")
     callid = request.json.get('callid')
 
+    print(request.json)
     response = {
                 "text": text,
                 "callid": callid,
@@ -43,71 +44,67 @@ def predict():
                 '8':8,
                 '9':9
             }
-    for i in text.split("."):
+
+    sen = re.split(r"(press \d|pound|one|two|three|four|five|six|seven|eight|nine|zero)",text.lower())
+    for i in range(len(sen)):
         temp = {}
-        if "directory" in i:
-            value = getno.findall(i)
+        if "directory" in sen[i]:
+            value = getno.findall(sen[i+1]) 
             if value:
                 temp["command"] = "DTMF"
                 temp["value"] = strtoint.get(value[0])
                 response['action'].append(temp)
-        elif "spell" in i:
-            if "last and first" in i :
-                temp["command"] = "DTMF"
-                temp["value"] = f"{userdetails['Lname']}{userdetails['Fname']}"
+        elif "spell" in sen[i]:
+            if "last and first" in sen[i] :
+                temp["command"] = "DTMF_string"
+                temp["value"] = f"{userdetails['lname']}{userdetails['fname']}"
                 response['action'].append(temp)
-                if "pound" in i:
+                if "pound" in sen[i+1]:
                     temp = {}
-                    temp["command"] = "DTMF"
+                    temp["command"] = "DTMF" 
                     temp["value"] = "#"
                     response['action'].append(temp)
-            elif "first and last" in i:
-                temp["command"] = "DTMF"
-                temp["value"] = f"{userdetails['Fname']}{userdetails['Lname']}"
+            elif "first and last" in sen[i] or "who's you like to reach" in sen[i]:
+                temp["command"] = "DTMF_string"
+                temp["value"] = f"{userdetails['fname']}{userdetails['lname']}"
                 response['action'].append(temp)
-                if "pound" in i:
+                if "pound" in sen[i+1]:
                     temp = {}
-                    temp["command"] = "DTMF"
+                    temp["command"] = "DTMF" 
                     temp["value"] = "#"
                     response['action'].append(temp)
-            elif "first name" in i:
-                temp["command"] = "DTMF"
-                temp["value"] = f"{userdetails['Fname']}"
+            elif "first name" in sen[i]:
+                temp["command"] = "DTMF_string"
+                temp["value"] = f"{userdetails['fname']}"
                 response['action'].append(temp)
-                if "pound" in i:
+                if "pound" in sen[i+1]:
                     temp = {}
-                    temp["command"] = "DTMF"
+                    temp["command"] = "DTMF" 
                     temp["value"] = "#"
                     response['action'].append(temp)
-            elif "last name" in i:
-                temp["command"] = "DTMF"
-                temp["value"] = f"{userdetails['Lname']}"
+            elif "last name" in sen[i]:
+                temp["command"] = "DTMF_string"
+                temp["value"] = f"{userdetails['lname']}"
                 response['action'].append(temp)
-                if "pound" in i:
+                if "pound" in sen[i+1]:
                     temp = {}
-                    temp["command"] = "DTMF"
+                    temp["command"] = "DTMF" 
                     temp["value"] = "#"
                     response['action'].append(temp)
-        elif "last name" in i:
-            value = getno.findall(i)
-            if value:
-                temp = {}
-                temp["command"] = "DTMF"
-                temp["value"] = strtoint.get(value[0])
-                response['action'].append(temp)
-        elif userdetails['Lname'] in i or userdetails['Fname'] in i:
-            value = getno.findall(i)
-            print(value)
+        elif "last name" in sen[i]:
+            value = getno.findall(sen[i+1]) 
             if value:
                 temp = {}
-                temp["command"] = "DTMF"
+                temp["command"] = "DTMF" 
                 temp["value"] = strtoint.get(value[0])
                 response['action'].append(temp)
-        elif "english" in i:
-            value = getno.findall(i)
+        elif userdetails['lname'] in sen[i] or userdetails['fname'] in sen[i]:
+            value = getno.findall(sen[i+1]) 
             if value:
-                temp["command"] = "DTMF"
+                temp = {}
+                temp["command"] = "DTMF" 
                 temp["value"] = strtoint.get(value[0])
                 response['action'].append(temp)
-                
+    
+    print(response)
     return jsonify(response)
