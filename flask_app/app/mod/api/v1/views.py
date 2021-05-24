@@ -14,7 +14,7 @@ def predict():
     text = request.json.get("text")
     userdetails = request.json.get("userdetails")
     callid = request.json.get('callid')
-
+    text = text.lower()
     print(request.json)
     response = {
                 "text": text,
@@ -99,6 +99,11 @@ def predict():
                         temp["command"] = "DTMF" 
                         temp["value"] = strtoint.get(value[0])
                         response['action'].append(temp)
+            elif "who's you like to reach" in sen[i]:
+                temp = {}
+                temp["command"] = "DTMF_string"
+                temp["value"] = f"{userdetails['fname']}{userdetails['lname']}"
+                response['action'].append(temp)
             elif "last name" in sen[i]:
                 value = getno.findall(sen[i+1]) 
                 if value:
