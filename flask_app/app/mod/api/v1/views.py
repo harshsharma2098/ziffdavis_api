@@ -91,6 +91,13 @@ def predict():
                     temp["command"] = "DTMF" 
                     temp["value"] = "#"
                     response['action'].append(temp)
+            elif "name" in sen[i]:
+                value = getno.findall(sen[i+1]) 
+                if value:
+                    temp = {}
+                    temp["command"] = "DTMF" 
+                    temp["value"] = strtoint.get(value[0])
+                    response['action'].append(temp)
         elif "last name" in sen[i]:
             value = getno.findall(sen[i+1]) 
             if value:
