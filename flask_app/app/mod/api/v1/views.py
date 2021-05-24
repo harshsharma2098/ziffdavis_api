@@ -99,7 +99,7 @@ def predict():
                         temp["command"] = "DTMF" 
                         temp["value"] = strtoint.get(value[0])
                         response['action'].append(temp)
-            elif "who's you like to reach" in sen[i]:
+            elif "you like to reach" in sen[i]:
                 temp = {}
                 temp["command"] = "DTMF_string"
                 temp["value"] = f"{userdetails['fname']}{userdetails['lname']}"
@@ -112,6 +112,13 @@ def predict():
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
             elif userdetails['lname'] in sen[i] or userdetails['fname'] in sen[i]:
+                value = getno.findall(sen[i+1]) 
+                if value:
+                    temp = {}
+                    temp["command"] = "DTMF" 
+                    temp["value"] = strtoint.get(value[0])
+                    response['action'].append(temp)
+            elif "dial by name" in sen[i]:
                 value = getno.findall(sen[i+1]) 
                 if value:
                     temp = {}
