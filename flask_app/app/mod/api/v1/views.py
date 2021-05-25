@@ -101,7 +101,7 @@ def predict():
                         response['action'].append(temp)
             elif "you like to reach" in sen[i]:
                 temp = {}
-                temp["command"] = "DTMF_string"
+                temp["command"] = "play"
                 temp["value"] = f"{userdetails['fname']}{userdetails['lname']}"
                 response['action'].append(temp)
             elif "last name" in sen[i]:
