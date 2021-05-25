@@ -102,7 +102,7 @@ def predict():
             elif "you like to reach" in sen[i]:
                 temp = {}
                 temp["command"] = "play"
-                temp["value"] = f"{userdetails['fname']}{userdetails['lname']}"
+                temp["value"] = f"{userdetails['fname']} {userdetails['lname']}"
                 response['action'].append(temp)
             elif "last name" in sen[i]:
                 value = getno.findall(sen[i+1]) 
