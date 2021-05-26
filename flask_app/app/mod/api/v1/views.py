@@ -49,7 +49,7 @@ def predict():
     try:
         for i in range(len(sen)):
             temp = {}
-            if "transferring" in sen[i] or "wait while i transfer your call" in sen[i]:
+            if "transferring" in sen[i] or "wait while i transfer your call" in sen[i] or "being transferred please hold" in sen[i]:
                 temp = {}
                 temp['command'] = "hangup"
                 temp['value'] = True
@@ -64,7 +64,7 @@ def predict():
                         temp["command"] = "DTMF" 
                         temp["value"] = "#"
                         response['action'].append(temp)
-                elif "first and last" in sen[i] :
+                elif "first and last" in sen[i] or "1st and last" in sen[i] :
                     temp["command"] = "play"
                     temp["value"] = f"{userdetails['fname']} {userdetails['lname']}"
                     response['action'].append(temp)
