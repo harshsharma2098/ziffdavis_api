@@ -104,17 +104,14 @@ def predict():
                         temp["value"] = strtoint.get(value[0])
                         response['action'].append(temp)
             elif "directory" in sen[i]:
-                if "pound" in sen[i]:
-                    temp = {}
-                    temp["command"] = "DTMF" 
-                    temp["value"] = "#"
-                    response['action'].append(temp)
+                if "to access our staff directory" in sen[i]:
+                    value = getno.findall(sen[i-1])
                 else:
                     value = getno.findall(sen[i+1])
-                    if value:
-                        temp["command"] = "DTMF"
-                        temp["value"] = strtoint.get(value[0])
-                        response['action'].append(temp)
+                if value:
+                    temp["command"] = "DTMF"
+                    temp["value"] = strtoint.get(value[0])
+                    response['action'].append(temp)
             elif "spell" in sen[i] or "enter" in sen[i] or "know" in sen[i]:
                 if "last and first" in sen[i] or "last name and first" in sen[i] or "last name first name" in sen[i] or "last in first name" in sen[i] or "last name and then spell the first name" in sen[i]:
                     temp["command"] = "DTMF_string"
