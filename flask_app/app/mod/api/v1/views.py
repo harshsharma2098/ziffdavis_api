@@ -55,6 +55,50 @@ def predict():
                     temp["command"] = "DTMF"
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
+            elif "say" in sen[i] :
+                if "last and first" in sen[i] or "last name first" in sen[i]:
+                    temp["command"] = "DTMF_string"
+                    temp["value"] = f"{userdetails['lname']} {userdetails['fname']}"
+                    response['action'].append(temp)
+                    if "pound" in sen[i+1]:
+                        temp = {}
+                        temp["command"] = "DTMF" 
+                        temp["value"] = "#"
+                        response['action'].append(temp)
+                elif "first and last" in sen[i] :
+                    temp["command"] = "DTMF_string"
+                    temp["value"] = f"{userdetails['fname']} {userdetails['lname']}"
+                    response['action'].append(temp)
+                    if "pound" in sen[i+1]:
+                        temp = {}
+                        temp["command"] = "DTMF" 
+                        temp["value"] = "#"
+                        response['action'].append(temp)
+                elif "first name" in sen[i]:
+                    temp["command"] = "DTMF_string"
+                    temp["value"] = f"{userdetails['fname']}"
+                    response['action'].append(temp)
+                    if "pound" in sen[i+1]:
+                        temp = {}
+                        temp["command"] = "DTMF" 
+                        temp["value"] = "#"
+                        response['action'].append(temp)
+                elif "last name" in sen[i]:
+                    temp["command"] = "DTMF_string"
+                    temp["value"] = f"{userdetails['lname']}"
+                    response['action'].append(temp)
+                    if "pound" in sen[i+1]:
+                        temp = {}
+                        temp["command"] = "DTMF" 
+                        temp["value"] = "#"
+                        response['action'].append(temp)
+                elif "name" in sen[i]:
+                    value = getno.findall(sen[i+1]) 
+                    if value:
+                        temp = {}
+                        temp["command"] = "DTMF" 
+                        temp["value"] = strtoint.get(value[0])
+                        response['action'].append(temp)
             elif "spell" in sen[i] or "enter" in sen[i]:
                 if "last and first" in sen[i] or "last name first" in sen[i]:
                     temp["command"] = "DTMF_string"
@@ -65,7 +109,7 @@ def predict():
                         temp["command"] = "DTMF" 
                         temp["value"] = "#"
                         response['action'].append(temp)
-                elif "first and last" in sen[i] or "who's you like to reach" in sen[i]:
+                elif "first and last" in sen[i] :
                     temp["command"] = "DTMF_string"
                     temp["value"] = f"{userdetails['fname']}{userdetails['lname']}"
                     response['action'].append(temp)
