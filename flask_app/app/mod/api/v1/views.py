@@ -49,7 +49,7 @@ def predict():
     try:
         for i in range(len(sen)):
             temp = {}
-            if "transferring" in sen[i]:
+            if "transferring" in sen[i] or "wait while i transfer your call" in sen[i]:
                 temp = {}
                 temp['command'] = "hangup"
                 temp['value'] = True
