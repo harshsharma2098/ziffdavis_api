@@ -54,6 +54,13 @@ def predict():
                 temp['command'] = "hangup"
                 temp['value'] = True
                 response['action'].append(temp)
+            elif "english" in sen[i] :
+                value = getno.findall(sen[i+1]) 
+                if value:
+                    temp = {}
+                    temp["command"] = "DTMF" 
+                    temp["value"] = strtoint.get(value[0])
+                    response['action'].append(temp)
             elif "say" in sen[i] :
                 if "last and first" in sen[i] or "last name first" in sen[i] :
                     temp["command"] = "play"
@@ -187,13 +194,7 @@ def predict():
                     temp["command"] = "DTMF" 
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
-            elif "english" in sen[i] :
-                value = getno.findall(sen[i+1]) 
-                if value:
-                    temp = {}
-                    temp["command"] = "DTMF" 
-                    temp["value"] = strtoint.get(value[0])
-                    response['action'].append(temp)
+
     except Exception as e:
         print(e)
     finally : 
