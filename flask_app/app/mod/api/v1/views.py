@@ -141,7 +141,7 @@ def predict():
                         temp["value"] = "#"
                         response['action'].append(temp)
                 elif "last name" in sen[i] or "last name first" in sen[i]:
-                    if "last name and pound key" in sen[i]:
+                    if "last name and" in sen[i] and "pound" in sen[i+1]:
                         temp = {}
                         temp["command"] = "DTMF_string"
                         temp["value"] = f"{userdetails['lname']}"
