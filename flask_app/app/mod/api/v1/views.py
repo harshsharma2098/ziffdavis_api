@@ -171,7 +171,10 @@ def predict():
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
             elif "dial by name" in sen[i] or "dial by last name" in sen[i]:
-                value = getno.findall(sen[i+1]) if i+1 < len(sen) else getno.findall(sen[i-1])
+                if "to dial by" in sen[i]:
+                    value = getno.findall(sen[i-1])
+                else:
+                    value = getno.findall(sen[i+1]) if i+1 < len(sen) else getno.findall(sen[i-1])
                 if value:
                     temp = {}
                     temp["command"] = "DTMF" 
