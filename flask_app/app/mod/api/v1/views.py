@@ -141,21 +141,31 @@ def predict():
                         temp["value"] = "#"
                         response['action'].append(temp)
                 elif "last name" in sen[i] or "last name first" in sen[i]:
-                    value = getno.findall(sen[i+1]) 
-                    if value:
+                    if "last name and pound key" in sen[i]:
                         temp = {}
-                        temp["command"] = "DTMF" 
-                        temp["value"] = strtoint.get(value[0])
-                        response['action'].append(temp)
-                    else:
                         temp["command"] = "DTMF_string"
                         temp["value"] = f"{userdetails['lname']}"
                         response['action'].append(temp)
-                        if "pound" in sen[i+1] or "followed by number sign" in sen[i]:
+                        temp = {}
+                        temp["command"] = "DTMF" 
+                        temp["value"] = "#"
+                        response['action'].append(temp)
+                    else:
+                        value = getno.findall(sen[i+1]) 
+                        if value:
                             temp = {}
                             temp["command"] = "DTMF" 
-                            temp["value"] = "#"
+                            temp["value"] = strtoint.get(value[0])
                             response['action'].append(temp)
+                        else:
+                            temp["command"] = "DTMF_string"
+                            temp["value"] = f"{userdetails['lname']}"
+                            response['action'].append(temp)
+                            if "pound" in sen[i+1] or "followed by number sign" in sen[i]:
+                                temp = {}
+                                temp["command"] = "DTMF" 
+                                temp["value"] = "#"
+                                response['action'].append(temp)
                 elif "name" in sen[i]:
                     value = getno.findall(sen[i+1]) 
                     if value:
