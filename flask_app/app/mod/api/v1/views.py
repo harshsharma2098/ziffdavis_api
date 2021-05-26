@@ -49,7 +49,12 @@ def predict():
     try:
         for i in range(len(sen)):
             temp = {}
-            if "say" in sen[i] :
+            if "transferring" in sen[i]:
+                temp = {}
+                temp['command'] = "hangup"
+                temp['value'] = True
+                response['action'].append(temp)
+            elif "say" in sen[i] :
                 if "last and first" in sen[i] or "last name first" in sen[i]:
                     temp["command"] = "DTMF_string"
                     temp["value"] = f"{userdetails['lname']} {userdetails['fname']}"
@@ -93,7 +98,7 @@ def predict():
                         temp["command"] = "DTMF" 
                         temp["value"] = strtoint.get(value[0])
                         response['action'].append(temp)
-            if "directory" in sen[i]:
+            elif "directory" in sen[i]:
                 value = getno.findall(sen[i+1]) 
                 if value:
                     temp["command"] = "DTMF"
