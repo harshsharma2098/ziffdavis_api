@@ -108,7 +108,7 @@ def predict():
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
             elif "spell" in sen[i] or "enter" in sen[i] or "know" in sen[i]:
-                if "last and first" in sen[i] or "last name and first" in sen[i] or "last name first name" in sen[i]:
+                if "last and first" in sen[i] or "last name and first" in sen[i] or "last name first name" in sen[i] or "last in first name" in sen[i]:
                     temp["command"] = "DTMF_string"
                     temp["value"] = f"{userdetails['lname']}"
                     response['action'].append(temp)
