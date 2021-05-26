@@ -58,7 +58,7 @@ def predict():
             elif "spell" in sen[i] or "enter" in sen[i]:
                 if "last and first" in sen[i] or "last name first" in sen[i]:
                     temp["command"] = "DTMF_string"
-                    temp["value"] = f"{userdetails['lname']}{userdetails['fname']}"
+                    temp["value"] = f"{userdetails['lname']}"
                     response['action'].append(temp)
                     if "pound" in sen[i+1]:
                         temp = {}
