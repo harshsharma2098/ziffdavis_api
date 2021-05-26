@@ -49,12 +49,7 @@ def predict():
     try:
         for i in range(len(sen)):
             temp = {}
-            if "transferring" in sen[i] or "wait while i transfer your call" in sen[i] or "being transferred please hold" in sen[i]:
-                temp = {}
-                temp['command'] = "hangup"
-                temp['value'] = True
-                response['action'].append(temp)
-            elif "english" in sen[i] :
+            if "english" in sen[i] :
                 value = getno.findall(sen[i+1]) 
                 if value:
                     temp = {}
@@ -194,7 +189,11 @@ def predict():
                     temp["command"] = "DTMF" 
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
-
+            elif "transferring" in sen[i] or "wait while i transfer your call" in sen[i] or "being transferred please hold" in sen[i]:
+                temp = {}
+                temp['command'] = "hangup"
+                temp['value'] = True
+                response['action'].append(temp)
     except Exception as e:
         print(e)
     finally : 
