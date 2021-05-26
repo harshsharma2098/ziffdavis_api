@@ -189,7 +189,7 @@ def predict():
                     temp["command"] = "DTMF" 
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
-            elif "transferring" in sen[i] or "wait while i transfer your call" in sen[i] or "being transferred please hold" in sen[i]:
+            elif "transferring" in sen[i] or ("wait while i transfer your call" in sen[i] and "operator" not in sen[i]) or "being transferred please hold" in sen[i]:
                 temp = {}
                 temp['command'] = "hangup"
                 temp['value'] = True
