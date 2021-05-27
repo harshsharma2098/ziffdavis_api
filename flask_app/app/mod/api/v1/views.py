@@ -123,7 +123,7 @@ def predict():
                         temp["value"] = strtoint.get(value[0])
                         response['action'].append(temp)
             elif "directory" in sen[i]:
-                if "to access our staff directory" in sen[i]:
+                if "to access our staff directory" in sen[i] or "to consult our directory" in sen[i]:
                     value = getno.findall(sen[i-1])
                 else:
                     value = getno.findall(sen[i+1])
