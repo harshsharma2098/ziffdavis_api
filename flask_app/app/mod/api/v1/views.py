@@ -56,6 +56,25 @@ def predict():
                     temp["command"] = "DTMF" 
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
+            elif userdetails['lname'] in sen[i] or userdetails['fname'] in sen[i]:
+                if userdetails['lname'] in sen[i] and userdetails['fname'] in sen[i]:
+                    temp = {}
+                    temp['command'] = "hangup"
+                    temp['value'] = True
+                    temp['varified'] = True
+                    response['action'].append(temp)
+                elif "is that correct" in sen[i]:
+                    temp = {}
+                    temp["command"] = "play" 
+                    temp["value"] = "yes"
+                    response['action'].append(temp)
+                else:
+                    value = getno.findall(sen[i+1]) 
+                    if value:
+                        temp = {}
+                        temp["command"] = "DTMF" 
+                        temp["value"] = strtoint.get(value[0])
+                        response['action'].append(temp)
             elif "say" in sen[i] :
                 if "last and first" in sen[i] or "last name first" in sen[i] :
                     temp["command"] = "play"
@@ -195,25 +214,6 @@ def predict():
                     temp["command"] = "DTMF" 
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
-            elif userdetails['lname'] in sen[i] or userdetails['fname'] in sen[i]:
-                if userdetails['lname'] in sen[i] and userdetails['fname'] in sen[i]:
-                    temp = {}
-                    temp['command'] = "hangup"
-                    temp['value'] = True
-                    temp['varified'] = True
-                    response['action'].append(temp)
-                elif "is that correct" in sen[i]:
-                    temp = {}
-                    temp["command"] = "play" 
-                    temp["value"] = "yes"
-                    response['action'].append(temp)
-                else:
-                    value = getno.findall(sen[i+1]) 
-                    if value:
-                        temp = {}
-                        temp["command"] = "DTMF" 
-                        temp["value"] = strtoint.get(value[0])
-                        response['action'].append(temp)
             elif "transferring" in sen[i] or ("wait while i transfer your call" in sen[i] and "operator" not in sen[i]) or "being transferred please hold" in sen[i] or "please hold while I try to connect you" in sen[i]:
                 temp = {}
                 temp['command'] = "hangup"
