@@ -152,7 +152,7 @@ def predict():
                         response['action'].append(temp)
                     else:
                         value = getno.findall(sen[i+1]) 
-                        if value:
+                        if value and "at least" not in sen[i]:
                             temp = {}
                             temp["command"] = "DTMF" 
                             temp["value"] = strtoint.get(value[0])
