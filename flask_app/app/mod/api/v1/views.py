@@ -133,41 +133,49 @@ def predict():
                     response['action'].append(temp)
             elif "spell" in sen[i] or "enter" in sen[i] or "know" in sen[i]:
                 if "last and first" in sen[i] or "last name and first" in sen[i] or "last name first name" in sen[i] or "last in first name" in sen[i] or "last name and then spell the first name" in sen[i] or "last name first" in sen[i]:
-                    temp["command"] = "DTMF_string"
-                    temp["value"] = f"{userdetails['lname']}{userdetails['fname']}"
-                    response['action'].append(temp)
-                    if "pound" in sen[i+1] or "followed by number sign" in sen[i]:
+                    try:
                         temp = {}
-                        temp["command"] = "DTMF" 
-                        temp["value"] = "#"
+                        temp["command"] = "DTMF_string"
+                        temp["value"] = f"{userdetails['lname']}{userdetails['fname']}#" if "pound" in sen[i+1] or "followed by number sign" in sen[i] else f"{userdetails['lname']}{userdetails['fname']}"
+                        response['action'].append(temp)
+                    except Exception as e:
+                        print(e)
+                    finally:
+                        temp = {}
+                        temp["command"] = "DTMF_string"
+                        temp["value"] = f"{userdetails['lname']}{userdetails['fname']}"
                         response['action'].append(temp)
                 elif "first and last" in sen[i] or "first name and last" in sen[i]:
-                    temp["command"] = "DTMF_string"
-                    temp["value"] = f"{userdetails['fname']}{userdetails['lname']}"
-                    response['action'].append(temp)
-                    if "pound" in sen[i+1] or "followed by number sign" in sen[i]:
+                    try:
                         temp = {}
-                        temp["command"] = "DTMF" 
-                        temp["value"] = "#"
+                        temp["command"] = "DTMF_string"
+                        temp["value"] = f"{userdetails['fname']}{userdetails['lname']}#" if "pound" in sen[i+1] or "followed by number sign" in sen[i] else f"{userdetails['fname']}{userdetails['lname']}"
+                        response['action'].append(temp)
+                    except Exception as e:
+                        print(e)
+                    finally:
+                        temp = {}
+                        temp["command"] = "DTMF_string"
+                        temp["value"] = f"{userdetails['fname']}{userdetails['lname']}"
                         response['action'].append(temp)
                 elif "first name" in sen[i]:
-                    temp["command"] = "DTMF_string"
-                    temp["value"] = f"{userdetails['fname']}"
-                    response['action'].append(temp)
-                    if "pound" in sen[i+1] or "followed by number sign" in sen[i]:
+                    try:
                         temp = {}
-                        temp["command"] = "DTMF" 
-                        temp["value"] = "#"
+                        temp["command"] = "DTMF_string"
+                        temp["value"] = f"{userdetails['fname']}#" if "pound" in sen[i+1] or "followed by number sign" in sen[i] else f"{userdetails['fname']}"
+                        response['action'].append(temp)
+                    except Exception as e:
+                        print(e)
+                    finally:
+                        temp = {}
+                        temp["command"] = "DTMF_string"
+                        temp["value"] = f"{userdetails['fname']}"
                         response['action'].append(temp)
                 elif "last name" in sen[i] or "last name first" in sen[i]:
                     if "last name and" in sen[i] and "pound" in sen[i+1]:
                         temp = {}
                         temp["command"] = "DTMF_string"
-                        temp["value"] = f"{userdetails['lname']}"
-                        response['action'].append(temp)
-                        temp = {}
-                        temp["command"] = "DTMF" 
-                        temp["value"] = "#"
+                        temp["value"] = f"{userdetails['lname']}#"
                         response['action'].append(temp)
                     else:
                         value = getno.findall(sen[i+1]) 
@@ -177,13 +185,17 @@ def predict():
                             temp["value"] = strtoint.get(value[0])
                             response['action'].append(temp)
                         else:
-                            temp["command"] = "DTMF_string"
-                            temp["value"] = f"{userdetails['lname']}"
-                            response['action'].append(temp)
-                            if "pound" in sen[i+1] or "followed by number sign" in sen[i]:
+                            try:
                                 temp = {}
-                                temp["command"] = "DTMF" 
-                                temp["value"] = "#"
+                                temp["command"] = "DTMF_string"
+                                temp["value"] = f"{userdetails['lname']}#" if "pound" in sen[i+1] or "followed by number sign" in sen[i] else f"{userdetails['lname']}"
+                                response['action'].append(temp)
+                            except Exception as e:
+                                print(e)
+                            finally:
+                                temp = {}
+                                temp["command"] = "DTMF_string"
+                                temp["value"] = f"{userdetails['lname']}"
                                 response['action'].append(temp)
                 elif "name" in sen[i]:
                     value = getno.findall(sen[i+1]) 
