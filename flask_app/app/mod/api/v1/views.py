@@ -196,7 +196,13 @@ def predict():
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
             elif userdetails['lname'] in sen[i] or userdetails['fname'] in sen[i]:
-                if "is that correct" in sen[i]:
+                if userdetails['lname'] in sen[i] and userdetails['fname'] in sen[i]:
+                    temp = {}
+                    temp['command'] = "hangup"
+                    temp['value'] = True
+                    temp['varified'] = True
+                    response['action'].append(temp)
+                elif "is that correct" in sen[i]:
                     temp = {}
                     temp["command"] = "play" 
                     temp["value"] = "yes"
@@ -212,7 +218,15 @@ def predict():
                 temp = {}
                 temp['command'] = "hangup"
                 temp['value'] = True
+                temp['varified'] = True
                 response['action'].append(temp)
+            elif "hear the next name" in sen[i]:
+                value = getno.findall(sen[i+1]) 
+                if value:
+                    temp = {}
+                    temp["command"] = "DTMF" 
+                    temp["value"] = strtoint.get(value[0])
+                    response['action'].append(temp)
     except Exception as e:
         print(e)
     finally : 
