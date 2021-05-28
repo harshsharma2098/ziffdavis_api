@@ -239,6 +239,13 @@ def predict():
                     temp["command"] = "DTMF" 
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
+            elif "is not available record your message" in sen[i]:
+                temp = {}
+                temp["command"] = "hangup" 
+                temp["value"] = True
+                temp['varified'] = False
+                temp["comment"] = "name not recognised"
+                response['action'].append(temp)
     except Exception as e:
         print(e)
     finally : 
