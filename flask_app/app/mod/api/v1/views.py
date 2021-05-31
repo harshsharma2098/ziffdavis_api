@@ -136,27 +136,27 @@ def predict():
                     try:
                         temp = {}
                         temp["command"] = "DTMF_string"
-                        temp["value"] = f"{userdetails['lname']}{userdetails['fname']}#" if "pound" in sen[i+1] or "followed by number sign" in sen[i] else f"{userdetails['lname']}{userdetails['fname']}"
+                        temp["value"] = f"{userdetails['lname']} {userdetails['fname']}#" if "pound" in sen[i+1] or "followed by number sign" in sen[i] else f"{userdetails['lname']} {userdetails['fname']}"
                         response['action'].append(temp)
                     except Exception as e:
                         print(e)
                     finally:
                         temp = {}
                         temp["command"] = "DTMF_string"
-                        temp["value"] = f"{userdetails['lname']}{userdetails['fname']}"
+                        temp["value"] = f"{userdetails['lname']} {userdetails['fname']}"
                         response['action'].append(temp)
                 elif "first and last" in sen[i] or "first name and last" in sen[i]:
                     try:
                         temp = {}
                         temp["command"] = "DTMF_string"
-                        temp["value"] = f"{userdetails['fname']}{userdetails['lname']}#" if "pound" in sen[i+1] or "followed by number sign" in sen[i] else f"{userdetails['fname']}{userdetails['lname']}"
+                        temp["value"] = f"{userdetails['fname']} {userdetails['lname']}#" if "pound" in sen[i+1] or "followed by number sign" in sen[i] else f"{userdetails['fname']} {userdetails['lname']}"
                         response['action'].append(temp)
                     except Exception as e:
                         print(e)
                     finally:
                         temp = {}
                         temp["command"] = "DTMF_string"
-                        temp["value"] = f"{userdetails['fname']}{userdetails['lname']}"
+                        temp["value"] = f"{userdetails['fname']} {userdetails['lname']}"
                         response['action'].append(temp)
                 elif "first name" in sen[i]:
                     try:
