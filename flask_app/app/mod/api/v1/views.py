@@ -144,7 +144,6 @@ def predict():
                         response['action'].append(temp)
                     except Exception as e:
                         print(e)
-                    finally:
                         temp = {}
                         temp["command"] = "DTMF_string"
                         temp["value"] = f"{userdetails['lname']} {userdetails['fname']}"
@@ -157,7 +156,6 @@ def predict():
                         response['action'].append(temp)
                     except Exception as e:
                         print(e)
-                    finally:
                         temp = {}
                         temp["command"] = "DTMF_string"
                         temp["value"] = f"{userdetails['fname']} {userdetails['lname']}"
@@ -170,7 +168,6 @@ def predict():
                         response['action'].append(temp)
                     except Exception as e:
                         print(e)
-                    finally:
                         temp = {}
                         temp["command"] = "DTMF_string"
                         temp["value"] = f"{userdetails['fname']}"
@@ -196,7 +193,6 @@ def predict():
                                 response['action'].append(temp)
                             except Exception as e:
                                 print(e)
-                            finally:
                                 temp = {}
                                 temp["command"] = "DTMF_string"
                                 temp["value"] = f"{userdetails['lname']}"
