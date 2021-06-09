@@ -58,7 +58,7 @@ def predict():
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
             elif userdetails['lname'] in sen[i] or userdetails['fname'] in sen[i]:
-                if "record your message" in sen[i] or "is not available" in sen[i]:
+                if "record your message" in sen[i] or "not available" in sen[i] or "unavailable" in sen[i]:
                     temp = {}
                     temp['command'] = "hangup"
                     temp['value'] = True
