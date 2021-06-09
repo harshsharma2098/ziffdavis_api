@@ -34,6 +34,7 @@ def predict():
                 "eight":8,
                 "nine":9,
                 "pound":"#",
+                'star':"*",
                 '1':1,
                 '2':2,
                 '3':3,
@@ -45,7 +46,7 @@ def predict():
                 '9':9
             }
 
-    sen = re.split(r"(press \d|pound|one|two|three|four|five|six|seven|eight|nine|zero)",text.lower())
+    sen = re.split(r"(press \d|pound|one|two|three|four|five|six|seven|eight|nine|zero|star)",text.lower())
     try:
         for i in range(len(sen)):
             temp = {}
@@ -57,7 +58,13 @@ def predict():
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
             elif userdetails['lname'] in sen[i] or userdetails['fname'] in sen[i]:
-                if userdetails['lname'] in sen[i] and userdetails['fname'] in sen[i]:
+                if "record your message" in sen[i] or "is not available" in sen[i]:
+                    temp = {}
+                    temp['command'] = "hangup"
+                    temp['value'] = True
+                    temp['varified'] = True
+                    response['action'].append(temp)
+                elif userdetails['lname'] in sen[i] and userdetails['fname'] in sen[i]:
                     temp = {}
                     temp['command'] = "hangup"
                     temp['value'] = True
