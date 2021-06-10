@@ -51,7 +51,7 @@ def predict():
         for i in range(len(sen)):
             temp = {}
             if "english" in sen[i] :
-                value = getno.findall(sen[i+1]) 
+                value = getno.findall(sen[i+1]) if i+1 <= len(i) else None
                 if value:
                     temp = {}
                     temp["command"] = "DTMF" 
@@ -76,7 +76,7 @@ def predict():
                     temp["value"] = "yes"
                     response['action'].append(temp)
                 else:
-                    value = getno.findall(sen[i+1]) 
+                    value = getno.findall(sen[i+1]) if i+1 <= len(i) else None 
                     if value:
                         temp = {}
                         temp["command"] = "DTMF" 
@@ -123,25 +123,13 @@ def predict():
                     temp["command"] = "play"
                     temp["value"] = f"{userdetails['fname']} {userdetails['lname']}"
                     response['action'].append(temp)
-                    value = getno.findall(sen[i+1]) 
+                    value = getno.findall(sen[i+1]) if i+1 <= len(i) else None 
                     if value:
                         temp = {}
                         temp["command"] = "DTMF" 
                         temp["value"] = strtoint.get(value[0])
                         response['action'].append(temp)
-            elif "directory" in sen[i]:
-                if "to access our staff directory" in sen[i] or "to consult our directory" in sen[i]:
-                    value = getno.findall(sen[i-1])
-                elif "dial 4 for the company directory" in sen[i]:
-                    temp["command"] = "DTMF"
-                    temp["value"] = 4
-                    response['action'].append(temp)
-                else:
-                    value = getno.findall(sen[i+1])
-                if value:
-                    temp["command"] = "DTMF"
-                    temp["value"] = strtoint.get(value[0])
-                    response['action'].append(temp)
+
             elif "spell" in sen[i] or "enter" in sen[i] or "know" in sen[i]:
                 if "last and first" in sen[i] or "last name and first" in sen[i] or "last name first name" in sen[i] or "last in first name" in sen[i] or "last name and then spell the first name" in sen[i] or "last name first" in sen[i]:
                     try:
@@ -155,7 +143,7 @@ def predict():
                         temp["command"] = "DTMF_string"
                         temp["value"] = f"{userdetails['lname']} {userdetails['fname']}"
                         response['action'].append(temp)
-                elif "first and last" in sen[i] or "first name and last" in sen[i]:
+                elif "first and last" in sen[i] or "first name and last" in sen[i] or "first or last" in sen[i]:
                     try:
                         temp = {}
                         temp["command"] = "DTMF_string"
@@ -186,7 +174,7 @@ def predict():
                         temp["value"] = f"{userdetails['lname']}#"
                         response['action'].append(temp)
                     else:
-                        value = getno.findall(sen[i+1]) 
+                        value = getno.findall(sen[i+1]) if i+1 <= len(i) else None 
                         if value and "at least" not in sen[i]:
                             temp = {}
                             temp["command"] = "DTMF" 
@@ -204,8 +192,21 @@ def predict():
                                 temp["command"] = "DTMF_string"
                                 temp["value"] = f"{userdetails['lname']}"
                                 response['action'].append(temp)
+            elif "directory" in sen[i]:
+                if "to access our staff directory" in sen[i] or "to consult our directory" in sen[i]:
+                    value = getno.findall(sen[i-1])
+                elif "dial 4 for the company directory" in sen[i]:
+                    temp["command"] = "DTMF"
+                    temp["value"] = 4
+                    response['action'].append(temp)
+                else:
+                    value = getno.findall(sen[i+1]) if i+1 <= len(i) else None
+                if value:
+                    temp["command"] = "DTMF"
+                    temp["value"] = strtoint.get(value[0])
+                    response['action'].append(temp)
                 elif "name" in sen[i]:
-                    value = getno.findall(sen[i+1]) 
+                    value = getno.findall(sen[i+1]) if i+1 <= len(i) else None 
                     if value:
                         temp = {}
                         temp["command"] = "DTMF" 
@@ -220,14 +221,14 @@ def predict():
                 if "to dial by" in sen[i]:
                     value = getno.findall(sen[i-1])
                 else:
-                    value = getno.findall(sen[i+1]) if i+1 < len(sen) else getno.findall(sen[i-1])
+                    value = getno.findall(sen[i+1]) if i+1 <= len(i) else None if i+1 < len(sen) else getno.findall(sen[i-1])
                 if value:
                     temp = {}
                     temp["command"] = "DTMF" 
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
             elif "last name" in sen[i]:
-                value = getno.findall(sen[i+1]) 
+                value = getno.findall(sen[i+1]) if i+1 <= len(i) else None 
                 if value:
                     temp = {}
                     temp["command"] = "DTMF" 
@@ -240,7 +241,7 @@ def predict():
                 temp['varified'] = True
                 response['action'].append(temp)
             elif "hear the next name" in sen[i]:
-                value = getno.findall(sen[i+1]) 
+                value = getno.findall(sen[i+1]) if i+1 <= len(i) else None 
                 if value:
                     temp = {}
                     temp["command"] = "DTMF" 
