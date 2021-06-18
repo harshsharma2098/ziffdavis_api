@@ -86,7 +86,7 @@ def predict():
                     temp = {}
                     temp['command'] = "hangup"
                     temp['value'] = True
-                    temp['varified'] = "partial"
+                    temp['partial_verify'] = True
                     response['action'].append(temp)
                     break
             elif "say" in sen[i] :
