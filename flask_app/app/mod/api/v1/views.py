@@ -70,7 +70,6 @@ def predict():
                     temp['value'] = True
                     temp['varified'] = True
                     response['action'].append(temp)
-                    break
                 # elif "is that correct" in sen[i]:
                 #     temp = {}
                 #     temp["command"] = "play" 
@@ -88,7 +87,6 @@ def predict():
                     temp['value'] = True
                     temp['partial_verify'] = True
                     response['action'].append(temp)
-                    break
             elif "say" in sen[i] :
                 if "last and first" in sen[i] or "last name first" in sen[i] :
                     temp["command"] = "play"
