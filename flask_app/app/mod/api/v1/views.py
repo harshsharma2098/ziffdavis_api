@@ -252,7 +252,7 @@ def predict():
                     temp["command"] = "DTMF" 
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
-            elif "record your message" in sen[i] or "not finding a match for that name" in sen[i] or "no matching names" in sen[i]:
+            elif "not finding a match for that name" in sen[i] or "no matching names" in sen[i]:
                 temp = {}
                 temp["command"] = "hangup" 
                 temp["value"] = True
