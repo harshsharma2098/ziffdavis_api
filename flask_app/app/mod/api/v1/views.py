@@ -259,12 +259,6 @@ def predict():
                     temp["command"] = "DTMF" 
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
-            elif "transferring" in sen[i] or ("wait while i transfer your call" in sen[i] and "operator" not in sen[i]) or "being transferred please hold" in sen[i] or "please hold while I try to connect you" in sen[i]:
-                temp = {}
-                temp['command'] = "hangup"
-                temp['value'] = True
-                temp['varified'] = True
-                response['action'].append(temp)
             elif "hear the next name" in sen[i]:
                 value = getno.findall(sen[i+1]) if i+1 <= len(sen) else None 
                 if value:
