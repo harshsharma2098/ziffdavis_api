@@ -57,14 +57,14 @@ def predict():
                     temp["command"] = "DTMF" 
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
-            elif userdetails['lname'] in sen[i].split() or userdetails['fname'] in sen[i].split():
+            elif userdetails['lname'].lower() in sen[i].split() or userdetails['fname'].lower() in sen[i].split():
                 # if "record your message" in sen[i] or "not available" in sen[i] or "unavailable" in sen[i]:
                 #     temp = {}
                 #     temp['command'] = "hangup"
                 #     temp['value'] = True
                 #     temp['varified'] = True
                 #     response['action'].append(temp)
-                if userdetails['lname'] in sen[i] and userdetails['fname'] in sen[i]:
+                if userdetails['lname'].lower() in sen[i] and userdetails['fname'].lower() in sen[i]:
                     temp = {}
                     temp['command'] = "hangup"
                     temp['value'] = True
