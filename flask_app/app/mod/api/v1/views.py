@@ -196,14 +196,12 @@ def predict():
                         temp['varified'] = False
                         temp["comment"] = "not verified"
                         response['action'].append(temp)
-                    
-                    temp = {}
-                    temp["command"] = "DTMF_string"
-                    temp["value"] = f"{userdetails['lname'][:3]}"
-                    response['action'].append(temp)
-                    
-                    
-                    response['action'].append(temp)                
+                    else:
+                        temp = {}
+                        temp["command"] = "DTMF_string"
+                        temp["value"] = f"{userdetails['lname'][:3]}"
+                        response['action'].append(temp)
+                                    
                 elif "first and last" in sen[i] or "first name and last" in sen[i] or "first or last" in sen[i]:
                     print("*"*20)
                     print("Line 202 condition : From first and last, first name and last, first or last in sen[i]")
