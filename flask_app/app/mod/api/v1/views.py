@@ -202,8 +202,6 @@ def predict():
                     temp["value"] = f"{userdetails['lname'][:3]}"
                     response['action'].append(temp)
                     
-                    
-                    response['action'].append(temp)                
                 elif "first and last" in sen[i] or "first name and last" in sen[i] or "first or last" in sen[i]:
                     print("*"*20)
                     print("Line 202 condition : From first and last, first name and last, first or last in sen[i]")
@@ -358,6 +356,21 @@ def predict():
                             temp["command"] = "DTMF" 
                             temp["value"] = strtoint.get(value[0])
                             response['action'].append(temp)
+                
+                elif "dial by name" in sen[i]:
+                    value = getno.findall(sen[i+1]) if i+1 <= len(sen) else None
+                    temp["command"] = "DTMF" 
+                    temp["value"] = strtoint.get(value[0])
+                    response['action'].append(temp)
+                
+                elif "voicemail" in sen[i] or "voice messaging service" in sen[i] or "please record your message" in sen[i-1] or "please call back the next business day" in sen[i] or "you want to reach you may dial it now" in sen[i] or "please leave a message" in sen[i]:
+                    temp = {}
+                    temp["command"] = "hangup" 
+                    temp["value"] = True
+                    temp['varified'] = False
+                    temp["comment"] = "not verified"
+                    response['action'].append(temp)
+
             elif "directory" in sen[i]:
                 print("*"*20)
                 print("Line 355 condition : if directory in sen[i]")
@@ -438,7 +451,7 @@ def predict():
                 temp["comment"] = "name not recognised"
                 response['action'].append(temp)
             
-            elif "please call back during our normal business hours" in sen[i] or "please leave your message" in sen[i] or "you've reached the voicemail" in sen[i] or "hi you've reached" in sen[i] or "I'm sorry I could not find any names that match your entry" in sen[i]:
+            elif "please call back during our normal business hours" in sen[i] or "please leave your message" in sen[i] or "you've reached the voicemail" in sen[i] or "hi you've reached" in sen[i] or "I'm sorry I could not find any names that match your entry" in sen[i] or "will return your call as soon as possible thank you" in sen[i] or "to leave a voicemail" in sen[i] or "thank you for contacting you" in sen[i] or "i connect your call" in sen[i] or "nothing service at this time" in sen[i] or "waiting please stand bye" in sen[i] or "will get back to you shortly" in sen[i] or "please leave us your name" in sen[i] or "we will return your call as soon as possible" in sen[i] or "thank you for calling" in sen[i] or "i'll call you back thank you" in sen[i] or "hello testing repertory" in sen[i] or "four easy links product support" in sen[i] or "hang up" in sen[i] or "i'll get back to you" in sen[i] or "voice messages" in sen[i] or "voicemail" in sen[i] or "please leave a message" in sen[i]:
                 print("*"*20)
                 print("Line 435 condition : please call back during our normal business hours, please leave your message, you've reached the voicemail, hi you've reached in sen[i]")
                 temp = {}
@@ -447,6 +460,15 @@ def predict():
                 temp['varified'] = False
                 temp["comment"] = "not verified"
                 response['action'].append(temp)
+            
+            # elif "directory" not in sen[i]:
+            #     print(f"This is sen[i]______________{sen[i]}")
+            #     temp = {}
+            #     temp["command"] = "hangup" 
+            #     temp["value"] = True
+            #     temp['varified'] = False
+            #     temp["comment"] = "not verified"
+            #     response['action'].append(temp)
             
     except Exception as e:
         print(e)
