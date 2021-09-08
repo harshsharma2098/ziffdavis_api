@@ -71,8 +71,8 @@ def predict():
                 #     temp['varified'] = True
                 #     response['action'].append(temp)
                 if userdetails['lname'].lower() in sen[i] and userdetails['fname'].lower() in sen[i]:
-                        print("*"*20)
-                        print("Line 73 condition : If lname and fname found in sen[i]")
+                    print("*"*20)
+                    print("Line 73 condition : If lname and fname found in sen[i]")
                     temp = {}
                     temp['command'] = "hangup"
                     temp['value'] = True
@@ -120,15 +120,13 @@ def predict():
                     if "pound" in sen[i+1]:
                         print("*"*20)
                         print("Line 120 condition : pound in sen[i+1] ")
-
                         temp = {}
                         temp["command"] = "DTMF" 
                         temp["value"] = "#"
                         response['action'].append(temp)
                 elif "first name" in sen[i]:
                     print("*"*20)
-                    print("Line 128 condition : first name in sen[i] ")
-                    
+                    print("Line 128 condition : first name in sen[i] ")                    
                     temp["command"] = "play"
                     temp["value"] = f"{userdetails['fname']}"
                     response['action'].append(temp)
@@ -154,8 +152,7 @@ def predict():
                         response['action'].append(temp)
                 elif "name" in sen[i]:
                     print("*"*20)
-                    print("Line 155 condition : name in sen[i]")
-                    
+                    print("Line 155 condition : name in sen[i]")                    
                     temp["command"] = "play"
                     temp["value"] = f"{userdetails['fname']} {userdetails['lname']}"
                     response['action'].append(temp)
@@ -167,7 +164,6 @@ def predict():
                         temp["command"] = "DTMF" 
                         temp["value"] = strtoint.get(value[0])
                         response['action'].append(temp)
-
             elif "spell" in sen[i] or "enter" in sen[i] or "know" in sen[i] or "press" in sen[i] or "dial" in sen[i]:
                 print("*"*20)
                 print("Line 171 condition : If spell, enter , know , press and dial found in sen[i]")
@@ -188,16 +184,14 @@ def predict():
                         temp = {}
                         temp["command"] = "DTMF_string"
                         temp["value"] = f"{userdetails['lname']} {userdetails['fname']}"
-                        response['action'].append(temp)
-               
+                        response['action'].append(temp)               
                 elif "please enter at least the first 3 letters of the person's last name" in sen[i] or "please enter the first 3 letters of the person's last name" in sen[i]:
                     print("*"*20)
                     print("Line 193 condition : Enter the 1st 3 letter and the last 3 letter of the person's last name")
                     temp = {}
                     temp["command"] = "DTMF_string"
                     temp["value"] = f"{userdetails['lname'][:3]}"
-                    response['action'].append(temp)
-                
+                    response['action'].append(temp)                
                 elif "first and last" in sen[i] or "first name and last" in sen[i] or "first or last" in sen[i]:
                     print("*"*20)
                     print("Line 202 condition : From first and last, first name and last, first or last in sen[i]")
