@@ -71,8 +71,8 @@ def predict():
                 #     temp['varified'] = True
                 #     response['action'].append(temp)
                 if userdetails['lname'].lower() in sen[i] and userdetails['fname'].lower() in sen[i]:
-                        print("*"*20)
-                        print("Line 73 condition : If lname and fname found in sen[i]")
+                    print("*"*20)
+                    print("Line 73 condition : If lname and fname found in sen[i]")
                     temp = {}
                     temp['command'] = "hangup"
                     temp['value'] = True
@@ -193,11 +193,21 @@ def predict():
                 elif "please enter at least the first 3 letters of the person's last name" in sen[i] or "please enter the first 3 letters of the person's last name" in sen[i]:
                     print("*"*20)
                     print("Line 193 condition : Enter the 1st 3 letter and the last 3 letter of the person's last name")
+                    
+                    if "I'm sorry I could not find any names that match your entry" in sen[i]:
+                        temp = {}
+                        temp["command"] = "hangup" 
+                        temp["value"] = True
+                        temp['varified'] = False
+                        temp["comment"] = "not verified"
+                        response['action'].append(temp)
+                    
                     temp = {}
                     temp["command"] = "DTMF_string"
                     temp["value"] = f"{userdetails['lname'][:3]}"
                     response['action'].append(temp)
-                
+                    
+                    
                 elif "first and last" in sen[i] or "first name and last" in sen[i] or "first or last" in sen[i]:
                     print("*"*20)
                     print("Line 202 condition : From first and last, first name and last, first or last in sen[i]")
