@@ -252,7 +252,7 @@ def predict():
                         print(e)
                         temp = {}
                         temp["command"] = "DTMF_string"
-                        temp["value"] = f"{userdetails['fname']}"
+                        temp["value"] = f"{userdetails['fname']}#" if "pound" in sen[i] or "followed by number sign" in sen[i] else f"{userdetails['fname']}"
                         response['action'].append(temp)
                 elif "last name" in sen[i] or "last name first" in sen[i]:
                     print("*"*20)
