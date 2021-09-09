@@ -204,7 +204,9 @@ def predict():
                     response['action'].append(temp)
                 elif "first 3 digits of the first name" in sen[i]:
                     print("*"*20)
-                    print("Line 207 condition : Enter the 1st 3 letter of the person's first name") 
+                    print("Line 207 condition : Enter the 1st 3 letter of the person's first name")
+                    print('sentence=========',i, sen)
+
                     temp = {}
                     temp["command"] = "DTMF_string"
                     temp["value"] = f"{userdetails['fname'][:3]}#" if "pound" in sen[i+1] or "followed by number sign" in sen[i] else f"{userdetails['fname'][:3]}"
