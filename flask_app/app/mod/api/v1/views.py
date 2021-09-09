@@ -22,7 +22,7 @@ def predict():
                 "userdetails": userdetails,
                 "action" : []
             }
-    getno = re.compile('(one|two|three|four|five|six|seven|eight|nine|\d|pound)')
+    getno = re.compile('(one|two|three|four|five|six|seven|eight|nine|\\d|pound)')
     strtoint = {
                 "one":1,
                 "two":2,
@@ -288,7 +288,13 @@ def predict():
                     if "to access our staff directory" in sen[i] or "to consult our directory" in sen[i] or "dial by name directory" in sen[i] or "to access our company directory" in sen[i] or  "to the local at 17 directory" in sen[i]:
                         print("*"*20)
                         print("Line 291 condition : to access our staff directory, to consult our directory, dial by name directory, to access our company directory, to the local at 17 directory in sen[i]")
-                        value = getno.findall(sen[i-1])
+                        value = getno.findall(sen[i - 1])
+                        words = sen[i - 1].split()
+                        value_dist = [
+                            abs(words.index("directory") - words.index(v)) for v in value
+                        ]
+
+                        value = [value[value_dist.index(min(value_dist))]]
                     elif "dial 4 for the company directory" in sen[i]:
                         print("*"*20)
                         print("Line 295 condition : if dial 4 for the company directory in sen[i]")
