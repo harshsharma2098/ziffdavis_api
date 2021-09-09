@@ -185,7 +185,7 @@ def predict():
                         temp["command"] = "DTMF_string"
                         temp["value"] = f"{userdetails['lname']} {userdetails['fname']}"
                         response['action'].append(temp)      
-                elif "i'm sorry i could not find any names that match your entry" in sen[i] or "the name you have entered does not exist" in sen[i]:
+                elif "i'm sorry i could not find any names that match your entry" in sen[i] or "the name you have entered does not exist" in sen[i] or "no matches found" in sen[i]:
                     print("*"*20)
                     print("Line 190 condition : if the person's name does not exist") 
                     temp = {}
@@ -200,7 +200,7 @@ def predict():
                     print("Line 200 condition : Enter the 1st 3 letter and the last 3 letter of the person's last name") 
                     temp = {}
                     temp["command"] = "DTMF_string"
-                    temp["value"] = f"{userdetails['lname'][:3]}"
+                    temp["value"] = f"{userdetails['lname'][:3]}#" if "pound" in sen[i+1] or "followed by number sign" in sen[i] else f"{userdetails['lname'][:3]}"
                     response['action'].append(temp)
                 elif "first and last" in sen[i] or "first name and last" in sen[i] or "first or last" in sen[i]:
                     print("*"*20)
