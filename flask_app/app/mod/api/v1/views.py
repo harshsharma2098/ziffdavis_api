@@ -202,11 +202,6 @@ def predict():
                     temp["command"] = "DTMF_string"
                     temp["value"] = f"{userdetails['lname'][:3]}"
                     response['action'].append(temp)
-<<<<<<< HEAD
-                    
-=======
-                                    
->>>>>>> f2a0c13fbc272c46d78108adda384c74a37fec13
                 elif "first and last" in sen[i] or "first name and last" in sen[i] or "first or last" in sen[i]:
                     print("*"*20)
                     print("Line 208 condition : From first and last, first name and last, first or last in sen[i]")
