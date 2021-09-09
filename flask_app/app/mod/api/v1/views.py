@@ -202,6 +202,13 @@ def predict():
                     temp["command"] = "DTMF_string"
                     temp["value"] = f"{userdetails['lname'][:3]}#" if "pound" in sen[i+1] or "followed by number sign" in sen[i] else f"{userdetails['lname'][:3]}"
                     response['action'].append(temp)
+                elif "first 3 digits of the first name" in sen[i]:
+                    print("*"*20)
+                    print("Line 207 condition : Enter the 1st 3 letter of the person's first name") 
+                    temp = {}
+                    temp["command"] = "DTMF_string"
+                    temp["value"] = f"{userdetails['fname'][:3]}#" if "pound" in sen[i+1] or "followed by number sign" in sen[i] else f"{userdetails['fname'][:3]}"
+                    response['action'].append(temp)
                 elif "first and last" in sen[i] or "first name and last" in sen[i] or "first or last" in sen[i]:
                     print("*"*20)
                     print("Line 208 condition : From first and last, first name and last, first or last in sen[i]")
