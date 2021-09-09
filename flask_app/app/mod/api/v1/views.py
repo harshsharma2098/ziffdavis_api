@@ -185,7 +185,7 @@ def predict():
                         temp["command"] = "DTMF_string"
                         temp["value"] = f"{userdetails['lname']} {userdetails['fname']}"
                         response['action'].append(temp)      
-                elif "i'm sorry i could not find any names that match your entry" in sen[i] or "the name you have entered does not exist" in sen[i] or "no matches found" in sen[i]:
+                elif "i'm sorry i could not find any names that match your entry" in sen[i] or "the name you have entered does not exist" in sen[i] or "no matches found" in sen[i] or "directory is empty" in sen[i]:
                     print("*"*20)
                     print("Line 190 condition : if the person's name does not exist") 
                     temp = {}
@@ -209,7 +209,6 @@ def predict():
                     print("*"*20)
                     print("Line 207 condition : Enter the 1st 3 letter of the person's first name")
                     print('sentence=========',i, sen)
-
                     temp = {}
                     temp["command"] = "DTMF_string"
                     if len(sen)>1:
