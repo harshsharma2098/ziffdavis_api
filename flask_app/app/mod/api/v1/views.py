@@ -185,7 +185,7 @@ def predict():
                         temp["command"] = "DTMF_string"
                         temp["value"] = f"{userdetails['lname']} {userdetails['fname']}"
                         response['action'].append(temp)      
-                elif "i'm sorry i could not find any names that match your entry" in sen[i]:
+                elif "i'm sorry i could not find any names that match your entry" in sen[i] or "the name you have entered does not exist" in sen[i] or "no matches found" in sen[i]:
                     print("*"*20)
                     print("Line 190 condition : if the person's name does not exist") 
                     temp = {}
@@ -195,12 +195,12 @@ def predict():
                     temp["comment"] = "not verified"
                     response['action'].append(temp)
 
-                elif "please enter at least the first 3 letters of the person's last name" in sen[i] or "please enter the first 3 letters of the person's last name" in sen[i]:
+                elif "please enter at least the first 3 letters of the person's last name" in sen[i] or "please enter the first 3 letters of the person's last name" in sen[i] or "please enter the first few letters of the person's first or last name" in sen[i]:
                     print("*"*20)
                     print("Line 200 condition : Enter the 1st 3 letter and the last 3 letter of the person's last name") 
                     temp = {}
                     temp["command"] = "DTMF_string"
-                    temp["value"] = f"{userdetails['lname'][:3]}"
+                    temp["value"] = f"{userdetails['lname'][:3]}#" if "pound" in sen[i+1] or "followed by number sign" in sen[i] else f"{userdetails['lname'][:3]}"
                     response['action'].append(temp)
                 elif "first and last" in sen[i] or "first name and last" in sen[i] or "first or last" in sen[i]:
                     print("*"*20)
@@ -457,7 +457,7 @@ def predict():
                 temp["comment"] = "name not recognised"
                 response['action'].append(temp)
             
-            elif "please call back during our normal business hours" in sen[i] or "please leave your message" in sen[i] or "you've reached the voicemail" in sen[i] or "hi you've reached" in sen[i] or "I'm sorry I could not find any names that match your entry" in sen[i] or "will return your call as soon as possible thank you" in sen[i] or "to leave a voicemail" in sen[i] or "thank you for contacting you" in sen[i] or "i connect your call" in sen[i] or "nothing service at this time" in sen[i] or "waiting please stand bye" in sen[i] or "will get back to you shortly" in sen[i] or "please leave us your name" in sen[i] or "we will return your call as soon as possible" in sen[i] or "thank you for calling" in sen[i] or "i'll call you back thank you" in sen[i] or "hello testing repertory" in sen[i] or "four easy links product support" in sen[i] or "hang up" in sen[i] or "i'll get back to you" in sen[i] or "voice messages" in sen[i] or "voicemail" in sen[i] or "please leave a message" in sen[i]:
+            elif "please call back during our normal business hours" in sen[i] or "please leave your message" in sen[i] or "you've reached the voicemail" in sen[i] or "hi you've reached" in sen[i] or "I'm sorry I could not find any names that match your entry" in sen[i] or "will return your call as soon as possible thank you" in sen[i] or "to leave a voicemail" in sen[i] or "thank you for contacting you" in sen[i] or "i connect your call" in sen[i] or "nothing service at this time" in sen[i] or "waiting please stand bye" in sen[i] or "will get back to you shortly" in sen[i] or "please leave us your name" in sen[i] or "we will return your call as soon as possible" in sen[i] or "i'll call you back thank you" in sen[i] or "hello testing repertory" in sen[i] or "four easy links product support" in sen[i] or "hang up" in sen[i] or "i'll get back to you" in sen[i] or "voice messages" in sen[i] or "voicemail" in sen[i] or "please leave a message" in sen[i]:
                 print("*"*20)
                 print("Line 442 condition : please call back during our normal business hours, please leave your message, you've reached the voicemail, hi you've reached in sen[i]")
                 temp = {}
