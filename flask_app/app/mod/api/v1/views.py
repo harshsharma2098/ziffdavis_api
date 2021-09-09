@@ -200,7 +200,7 @@ def predict():
                     print("Line 200 condition : Enter the 1st 3 letter and the last 3 letter of the person's last name") 
                     temp = {}
                     temp["command"] = "DTMF_string"
-                    if len(sen):
+                    if len(sen)>1:
                         temp["value"] = f"{userdetails['lname'][:3]}#" if "pound" in sen[i+1] or "followed by number sign" in sen[i] else f"{userdetails['lname'][:3]}"
                     else:
                         temp["value"] = f"{userdetails['lname'][:3]}#" if "pound" in sen[i] or "followed by number sign" in sen[i] else f"{userdetails['lname'][:3]}"
@@ -212,7 +212,7 @@ def predict():
 
                     temp = {}
                     temp["command"] = "DTMF_string"
-                    if len(sen):
+                    if len(sen)>1:
                         temp["value"] = f"{userdetails['fname'][:3]}#" if "pound" in sen[i+1] or "followed by number sign" in sen[i] else f"{userdetails['fname'][:3]}"
                     else:
                         temp["value"] = f"{userdetails['fname'][:3]}#" if "pound" in sen[i] or "followed by number sign" in sen[i] else f"{userdetails['fname'][:3]}"
