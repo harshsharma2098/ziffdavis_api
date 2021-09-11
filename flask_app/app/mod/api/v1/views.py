@@ -185,7 +185,7 @@ def predict():
                         temp["command"] = "DTMF_string"
                         temp["value"] = f"{userdetails['lname']} {userdetails['fname']}"
                         response['action'].append(temp)      
-                elif "i'm sorry i could not find any names" in sen[i] or "the name you have entered does not exist" in sen[i] or "no matches found" in sen[i] or "directory is empty" in sen[i] or "i'm sorry i could not find any name" in sen[i]:
+                elif " i'm sorry i could not find any names" in sen[i] or "the name you have entered does not exist" in sen[i] or "no matches found" in sen[i] or "directory is empty" in sen[i] or " i'm sorry i could not find any name" in sen[i]:
                     print("*"*20)
                     print("Line 190 condition : if the person's name does not exist") 
                     temp = {}
@@ -303,9 +303,7 @@ def predict():
                         print("*"*20)
                         print("Line 291 condition : to access our staff directory, to consult our directory, dial by name directory, to access our company directory, to the local at 17 directory in sen[i]")
                         value = getno.findall(sen[i - 1])
-                        print("Value==================", value)
                         words = sen[i - 1].split()
-                        print("Words==================", words)
                         value_dist = [
                             abs(words.index("directory") - words.index(v)) for v in value
                         ]
