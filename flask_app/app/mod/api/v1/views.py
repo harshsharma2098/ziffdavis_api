@@ -309,6 +309,7 @@ def predict():
                         ]
 
                         value = [value[value_dist.index(min(value_dist))]]
+                        print("Value==================", value)
                     elif "dial 4 for the company directory" in sen[i]:
                         print("*"*20)
                         print("Line 295 condition : if dial 4 for the company directory in sen[i]")
