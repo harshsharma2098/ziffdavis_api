@@ -303,13 +303,14 @@ def predict():
                         print("*"*20)
                         print("Line 291 condition : to access our staff directory, to consult our directory, dial by name directory, to access our company directory, to the local at 17 directory in sen[i]")
                         value = getno.findall(sen[i - 1])
+                        print("Value==================", value)
                         words = sen[i - 1].split()
+                        print("Words==================", words)
                         value_dist = [
                             abs(words.index("directory") - words.index(v)) for v in value
                         ]
 
                         value = [value[value_dist.index(min(value_dist))]]
-                        print("Value==================", value)
                     elif "dial 4 for the company directory" in sen[i]:
                         print("*"*20)
                         print("Line 295 condition : if dial 4 for the company directory in sen[i]")
