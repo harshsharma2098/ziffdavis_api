@@ -299,7 +299,7 @@ def predict():
                     print("*"*20)
                     print("Line 287 condition : if directroy in found in sen[i]")
                     print("********DIRECTORY**************")
-                    if "to access our staff directory" in sen[i] or "to consult our directory" in sen[i] or "dial by name directory" in sen[i] or "to access our company directory" in sen[i] or  "to the local at 17 directory" in sen[i]:
+                    if "to access our staff directory" in sen[i] or "to consult our directory" in sen[i] or "to access our company directory" in sen[i] or  "to the local at 17 directory" in sen[i]:
                         print("*"*20)
                         print("Line 291 condition : to access our staff directory, to consult our directory, dial by name directory, to access our company directory, to the local at 17 directory in sen[i]")
                         value = getno.findall(sen[i - 1])
