@@ -300,7 +300,7 @@ def predict():
                     value = getno.findall(sen[i - 1])
                     words = sen[i - 1].split()
                     value_dist = [
-                        abs(words.index("employee listing") - words.index(v)) for v in value
+                        abs(words.index("listing") - words.index(v)) for v in value
                     ]
 
                     value = [value[value_dist.index(min(value_dist))]]
@@ -407,7 +407,7 @@ def predict():
                 value = getno.findall(sen[i - 1])
                 words = sen[i - 1].split()
                 value_dist = [
-                    abs(words.index("directory") - words.index(v)) for v in value
+                    abs(words.index("listing") - words.index(v)) for v in value
                 ]
 
                 value = [value[value_dist.index(min(value_dist))]]
