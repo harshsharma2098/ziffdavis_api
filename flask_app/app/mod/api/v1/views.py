@@ -317,6 +317,7 @@ def predict():
                         print("sentence===============",sen[i])
                         print("I===========================",i)
                         words = sen[i - 1].split()
+                        print("words=================", words)
                         value_dist = [
                             abs(words.index("directory") - words.index(v)) for v in value
                         ]
