@@ -397,7 +397,8 @@ def predict():
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
                 
-                elif "voicemail" in sen[i] or "voice messaging service" in sen[i] or "please record your message" in sen[i-1] or "please call back the next business day" in sen[i] or "you want to reach you may dial it now" in sen[i] or "leave a message" in sen[i]:
+                elif "voice messaging service" in sen[i] or "please call back the next business day" in sen[i] or "you want to reach you may dial it now" in sen[i]:
+                    print("Line 401 condition: To hangup after receiving 'press' word.")
                     temp = {}
                     temp["command"] = "hangup" 
                     temp["value"] = True
