@@ -195,7 +195,7 @@ def predict():
                     temp["comment"] = "not verified"
                     response['action'].append(temp)
 
-                elif "please enter at least the first 3 letters of the person's last name" in sen[i] or "please enter the first 3 letters of the person's last name" in sen[i] or "please enter the first few letters of the person's first or last name" in sen[i]:
+                elif "please enter at least the first 3 letters of the person's last name" in sen[i] or "please enter the first 3 letters of the person's last name" in sen[i] or "please enter the first few letters of the person's first or last name" in sen[i] or "please enter the first 3 letters of your party's last name":
                     print("*"*20)
                     print("Line 200 condition : Enter the 1st 3 letter and the last 3 letter of the person's last name") 
                     temp = {}
