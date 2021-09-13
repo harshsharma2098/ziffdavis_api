@@ -394,7 +394,7 @@ def predict():
             elif "directory" in sen[i]:
                 print("*"*20)
                 print("Line 362 condition : if directory in sen[i]")
-                if "to access our staff directory" in sen[i] or "to consult our directory" in sen[i] or "to access our company directory" in sen[i] or  "to the local at 17 directory" in sen[i] or  "for the directory for operator assistance" in sen[i]:
+                if "to access our staff directory" in sen[i] or "to consult our directory" in sen[i] or "to access our company directory" in sen[i] or  "to the local at 17 directory" in sen[i] or  "for the directory for operator assistance" in sen[i] or "name directory" in sen[i]:
                     print("*"*20)
                     print("Line 365 condition : to access our staff directory, to consult our directory, to access our company directory, to the local at 17 directory, for the directory for operator assistance in sen[i]")
                     value = getno.findall(sen[i-1])
