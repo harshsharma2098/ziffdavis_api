@@ -294,7 +294,17 @@ def predict():
                                 temp["command"] = "DTMF_string"
                                 temp["value"] = f"{userdetails['lname']}"
                                 response['action'].append(temp)
-                                
+                elif "employee listing" in sen[i]:
+                    print("*"*20)
+                    print("Line 299 condition : if employee listing in found in senentence")
+                    value = getno.findall(sen[i - 1])
+                    words = sen[i - 1].split()
+                    value_dist = [
+                        abs(words.index("directory") - words.index(v)) for v in value
+                    ]
+
+                    value = [value[value_dist.index(min(value_dist))]]
+               
                 elif "directory" in sen[i]:
                     print("*"*20)
                     print("Line 287 condition : if directroy in found in sen[i]")
