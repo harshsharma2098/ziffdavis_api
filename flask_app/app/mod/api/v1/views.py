@@ -314,6 +314,8 @@ def predict():
                         print("Line 291 condition : to access our staff directory, to consult our directory, dial by name directory, to access our company directory, to the local at 17 directory in sen[i]")
                         value = getno.findall(sen[i - 1])
                         print("value=====================",value)
+                        print("sentence===============",sen[i])
+                        print("I===========================",i)
                         words = sen[i - 1].split()
                         value_dist = [
                             abs(words.index("directory") - words.index(v)) for v in value
