@@ -264,6 +264,12 @@ def predict():
                     temp["value"] = f"{userdetails['lname']}"
                     response['action'].append(temp)
                 
+                elif "enter the first 2 or more letters of the person's last name." in sen[i]:
+                    temp = {}
+                    temp["command"] = "DTMF_string"
+                    temp["value"] = f"{userdetails['lname']}"
+                    response['action'].append(temp)
+                
                 elif "last name" in sen[i] or "last name first" in sen[i]:
                     print("*"*20)
                     print("Line 246 condition : last name, last name first in sen[i]")
@@ -335,6 +341,14 @@ def predict():
                     temp["value"] = 3
                     response['action'].append(temp)
 
+                elif "no matching names." in sen[i]:
+                    temp = {}
+                    temp["command"] = "hangup" 
+                    temp["value"] = True
+                    temp['varified'] = False
+                    temp["comment"] = "not verified"
+                    response['action'].append(temp)
+                
                 elif "directory" in sen[i]:
                     print("*"*20)
                     print("Line 287 condition : if directroy in found in sen[i]")
@@ -519,6 +533,13 @@ def predict():
                     temp["command"] = "DTMF" 
                     temp["value"] = strtoint.get(value[0])
                     response['action'].append(temp)
+            elif "to complete your call to this person" in sen[i]:
+                temp = {}
+                temp['command'] = "hangup"
+                temp['value'] = True
+                temp['varified'] = True
+                response['action'].append(temp)
+        
             elif "hear the next name" in sen[i]:
                 print("*"*20)
                 print("Line 423 condition : hear the next name in sen[i]")
@@ -546,6 +567,7 @@ def predict():
                 temp["value"] = True
                 temp['varified'] = False
                 temp["comment"] = "not verified"
+                response['action'].append(temp)
 
             elif "robert" in sen[i]:
                 temp = {}
