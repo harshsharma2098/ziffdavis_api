@@ -169,6 +169,10 @@ def predict():
                         temp["command"] = "DTMF" 
                         temp["value"] = strtoint.get(value[0])
                         response['action'].append(temp)
+                elif "who would you like to reach" in sen[i] and "say" in sen[i]:
+                    temp["command"] = "play"
+                    temp["value"] = f"{userdetails['fname']} {userdetails['lname']}"
+                    response['action'].append(temp)
 
             elif "dial the name feature, please dial 9" in sen[i]:
                 temp = {}
@@ -242,6 +246,90 @@ def predict():
                 temp["value"] = f"{userdetails['fname']}"
                 response['action'].append(temp)
             
+            elif "to dial by name" in sen[i] and "press the pound sign" in sen[i]:
+                temp = {}
+                temp["command"] = "DTMF" 
+                temp["value"] = "#"
+                response['action'].append(temp)
+            
+            elif "please enter the first 3 letters of your party's first or last name" in sen[i]:
+                temp = {}
+                temp["command"] = "DTMF_string" 
+                temp["value"] = f"{userdetails['fname'][:3]}"
+                response['action'].append(temp)
+
+            elif "for the company directory, please dial 1" in sen[i]:
+                temp = {}
+                temp["command"] = "DTMF" 
+                temp["value"] = 1
+                response['action'].append(temp)
+            
+            elif "you may also access our dial by name directory by pressing pound." in sen[i]:
+                temp = {}
+                temp["command"] = "DTMF" 
+                temp["value"] = "#"
+                response['action'].append(temp)
+            
+            elif "for a dial by name directory, please press the star key" in sen[i]:
+                temp = {}
+                temp["command"] = "DTMF" 
+                temp["value"] = "*"
+                response['action'].append(temp)
+
+            elif "enter last name and pound key" in sen[i]:
+                temp = {}
+                temp["command"] = "DTMF_string"
+                temp["value"] = f"{userdetails['lname']}#"
+                response['action'].append(temp)
+            
+            elif "press up to 6 letters of the person's last name" in sen[i]:
+                temp = {}
+                temp["command"] = "DTMF_string"
+                temp["value"] = f"{userdetails['lname'][:6]}"
+                response['action'].append(temp)
+            
+            elif "to dial by employee name" in sen[i]:
+                temp = {}
+                temp["command"] = "DTMF"
+                temp["value"] = 4
+                response['action'].append(temp)
+            
+            elif "to access our company directory" in sen[i] and "press 1" in sen[i+1]:
+                temp = {}
+                temp["command"] = "DTMF"
+                temp["value"] = 1
+                response['action'].append(temp)
+            
+            elif "enter last name and pound sign" in sen[i]:
+                temp = {}
+                temp["command"] = "DTMF_string"
+                temp["value"] = f"{userdetails['lname']}#"
+                response['action'].append(temp)
+            
+            elif "dial name feature" in sen[i] and "please dial 9" in sen[i]:
+                temp = {}
+                temp["command"] = "DTMF"
+                temp["value"] = 9
+                response['action'].append(temp)
+            
+            elif "if you know the name of the person" in sen[i] and "but not the extension number" in sen[i] and "press 9" in sen[i+1]:
+                temp = {}
+                temp["command"] = "DTMF"
+                temp["value"] = 9
+                response['action'].append(temp)
+            
+            elif "please dial the last name and then press the pound key at any time during this message" in sen[i]:
+                temp = {}
+                temp["command"] = "DTMF"
+                temp["value"] = f"{userdetails['lname']}#"
+                response['action'].append(temp)
+            
+            elif "when you have finished" in sen[i] and "press the pound key" in sen[i]:
+                temp = {}
+                temp["command"] = "DTMF"
+                temp["value"] = "#"
+                response['action'].append(temp)
+            
             elif "spell" in sen[i] or "enter" in sen[i] or "know" in sen[i] or "press" in sen[i] or "dial" in sen[i]:
                 print("*"*20)
                 print("Line 171 condition : If spell, enter , know , press and dial found in sen[i]")
@@ -277,6 +365,12 @@ def predict():
                     temp = {}
                     temp["command"] = "DTMF_string"
                     temp["value"] = f"{userdetails['lname']}#"
+                    response['action'].append(temp)
+                
+                elif "please enter the first few letters of the person's first or last name followed by pound" in sen[i]:
+                    temp = {}
+                    temp["command"] = "DTMF_string"
+                    temp["value"] = f"{userdetails['lname'][:3]}#"
                     response['action'].append(temp)
                 
                 elif "please enter at least the first 3 letters of the person's last name" in sen[i] or "please enter the first 3 letters of the person's last name" in sen[i] or "please enter the first few letters of the person's first or last name" in sen[i] or "please enter the first 3 letters of your party's last name" in sen[i] or "enter the first few letters of the party's last" in sen[i]:
@@ -339,6 +433,12 @@ def predict():
                     temp["value"] = 1
                     response['action'].append(temp)
                 
+                elif "company directory by last name" in sen[i] and "press star" in sen[i+1]:
+                    temp = {}
+                    temp["command"] = "DTMF"
+                    temp["value"] = "*"
+                    response['action'].append(temp)
+                
                 elif "first name" in sen[i]:
                     print("*"*20)
                     print("Line 227 condition : First name in sen[i]")
@@ -361,6 +461,7 @@ def predict():
                 elif "last name" in sen[i] or "last name first" in sen[i]:
                     print("*"*20)
                     print("Line 246 condition : last name, last name first in sen[i]")
+                    # print(f"_________Sentence[i+1] check :__________{sen[i+1]}___________________")
                     # print("********** 4 ************")
                     if "press the pound key and use the dialpad to spell the last name" in sen[i]:
                         temp = {}
@@ -410,6 +511,24 @@ def predict():
                         temp = {}
                         temp["command"] = "DTMF_string"
                         temp["value"] = f"{userdetails['lname']}#"
+                        response['action'].append(temp)
+                    
+                    elif "to dial by last name" in sen[i] and "pound" in sen[i-1]:
+                        temp = {}
+                        temp["command"] = "DTMF"
+                        temp["value"] = "#"
+                        response['action'].append(temp)
+                    
+                    elif "please enter last name of the person you wish to speak to" in sen[i]:
+                        temp = {}
+                        temp["command"] = "DTMF_string"
+                        temp["value"] = f"{userdetails['lname']}"
+                        response['action'].append(temp)
+                    
+                    elif "enter the first 2 or more letters of the person's last name" in sen[i]:
+                        temp = {}
+                        temp["command"] = "DTMF_string"
+                        temp["value"] = f"{userdetails['lname']}"
                         response['action'].append(temp)
                     
                     else:
@@ -485,6 +604,18 @@ def predict():
                     temp["value"] = 8
                     response['action'].append(temp)
                 
+                elif "if you would like our dial by name directory" in sen[i] and "press 1" in sen[i+1]:
+                    temp = {}
+                    temp["command"] = "DTMF" 
+                    temp["value"] = 1
+                    response['action'].append(temp)
+                
+                elif "to use our dial by name" in sen[i] and "1" in sen[i-1] and "company directory" in sen[i]:
+                    temp = {}
+                    temp["command"] = "DTMF" 
+                    temp["value"] = 1
+                    response['action'].append(temp)
+                
                 elif "directory" in sen[i]:
                     print("*"*20)
                     print("Line 287 condition : if directroy in found in sen[i]")
@@ -507,7 +638,7 @@ def predict():
                         except ValueError as ve:
                             print("**********Run valuerror cell***********")
                             pass 
-                        
+                    
                     elif "dial 4 for the company directory" in sen[i]:
                         print("*"*20)
                         print("Line 295 condition : if dial 4 for the company directory in sen[i]")
@@ -718,7 +849,7 @@ def predict():
                 print("((((((( Sentence )))))))))))", sen[i])
                 # print("^^^^^^^ Temp value ^^^^^^^^^  ", temp)
                 # print("^^^^^^^ Response ^^^^^^^^^  ",response['action'])
-                
+
                 if len(response['action'])==0:
                     temp = {}
                     temp["command"] = "hangup" 
@@ -736,6 +867,17 @@ def predict():
                 temp['partial_verify'] = True
                 response['action'].append(temp)
             
+            elif "just tell me their name" in sen[i]:
+                temp["command"] = "play"
+                temp["value"] = f"{userdetails['fname']} {userdetails['lname']}"
+                response['action'].append(temp)
+            
+            elif "who would you like to reach" in sen[i] and "say" in sen[i]:
+                temp = {}
+                temp["command"] = "play"
+                temp["value"] = f"{userdetails['fname']} {userdetails['lname']}"
+                response['action'].append(temp)
+            
             # elif "directory" not in sen[i]:
             #     print(f"This is sen[i]______________{sen[i]}")
             #     temp = {}
@@ -744,7 +886,7 @@ def predict():
             #     temp['varified'] = False
             #     temp["comment"] = "not verified"
             #     response['action'].append(temp)
-            
+        
     except Exception as e:
         print(e)
     finally : 
