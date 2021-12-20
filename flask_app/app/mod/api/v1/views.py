@@ -174,13 +174,19 @@ def predict():
                     temp["command"] = "play"
                     temp["value"] = f"{userdetails['fname']} {userdetails['lname']}"
                     response['action'].append(temp)
-
+            
             elif "name not found. enter last name and pound sign." in sen[i] or "name not found. enter last name and pound key." in sen[i] or "there were no matches" in sen[i] or "subscriber id, not valid" in sen[i]:
                 temp = {}
                 temp["command"] = "hangup" 
                 temp["value"] = True
                 temp['varified'] = False
                 temp["comment"] = "not verified"
+                response['action'].append(temp)
+
+            elif "to access our company directory, please dial 9" in sen[i]:
+                temp = {}
+                temp["command"] = "DTMF" 
+                temp["value"] = 9
                 response['action'].append(temp)
 
             elif "dial the name feature, please dial 9" in sen[i]:
@@ -370,6 +376,18 @@ def predict():
                 temp["comment"] = "not verified"
                 response['action'].append(temp)
             
+            elif "please speak the name of the person you wish to call" in sen[i]:
+                temp = {}
+                temp["command"] = "play"
+                temp["value"] = f"{userdetails['fname']} {userdetails['lname']}"
+                response['action'].append(temp)
+            
+            elif "for a company directory" in sen[i] and "9" in sen[i-1]:
+                temp = {}
+                temp["command"] = "DTMF"
+                temp["value"] = 9
+                response['action'].append(temp)
+            
             elif "spell" in sen[i] or "enter" in sen[i] or "know" in sen[i] or "press" in sen[i] or "dial" in sen[i]:
                 print("*"*20)
                 print("Line 171 condition : If spell, enter , know , press and dial found in sen[i]")
@@ -390,7 +408,7 @@ def predict():
                         temp = {}
                         temp["command"] = "DTMF_string"
                         temp["value"] = f"{userdetails['lname']} {userdetails['fname']}"
-                        response['action'].append(temp)      
+                        response['action'].append(temp)
                 
                 elif "i'm sorry i could not find any names" in sen[i] or "the name you have entered does not exist" in sen[i] or "no matches found" in sen[i] or "directory is empty" in sen[i] or " i'm sorry i could not find any name" in sen[i] or "recording press" in sen[i] or "please record your message" in sen[i] or "no directory entries match your search" in sen[i]:
                     print("*"*20)
@@ -400,6 +418,12 @@ def predict():
                     temp["value"] = True
                     temp['varified'] = False
                     temp["comment"] = "not verified"
+                    response['action'].append(temp)
+                
+                elif "for our dial by name" in sen[i] and "1" in sen[i-1]:
+                    temp = {}
+                    temp["command"] = "DTMF"
+                    temp["value"] = 1
                     response['action'].append(temp)
                 
                 elif "enter the first few letters of the person's first or last name followedby pound." in sen[i]:
@@ -671,6 +695,12 @@ def predict():
                     temp["value"] = 1
                     response['action'].append(temp)
                 
+                elif "if you know your party's extension, you may enter it now or press the pound key to access the company directory." in sen[i]:
+                    temp = {}
+                    temp["command"] = "DTMF"
+                    temp["value"] = "#"
+                    response['action'].append(temp)
+                
                 elif "directory" in sen[i]:
                     print("*"*20)
                     print("Line 287 condition : if directroy in found in sen[i]")
@@ -829,6 +859,12 @@ def predict():
                     temp["command"] = "DTMF"
                     temp["value"] = 1
                     response['action'].append(temp)
+                
+                elif "for a company directory by name" in sen[i] and "7" in sen[i-1]:
+                    temp = {}
+                    temp["command"] = "DTMF"
+                    temp["value"] = 7
+                    response['action'].append(temp)
                     
                 else:
                     print("*"*20)
@@ -892,7 +928,7 @@ def predict():
                     temp = {}
                     temp["command"] = "DTMF" 
                     temp["value"] = strtoint.get(value[0])
-                    response['action'].append(temp)
+                    # response['action'].append(temp)
             elif "not finding a match for that name" in sen[i] or "no matching names" in sen[i]:
                 print("*"*20)
                 print("Line 432 condition : not finding a match for that name, no matching names in sen[i]")
