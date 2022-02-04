@@ -12,14 +12,14 @@ blueprint_flask = Blueprint("flask", __name__)
 @blueprint_flask.route("/predict", methods=["POST"])
 def predict():
     text = request.json.get("text")
-    userdetails = request.json.get("userdetails")
+    userdetails = request.json.get("calldetails")
     callid = request.json.get('callid')
     text = text.lower()
     print(request.json)
     response = {
                 "text": text,
                 "callid": callid,
-                "userdetails": userdetails,
+                "calldetails": userdetails,
                 "action" : []
             }
     getno = re.compile('(one|two|three|four|five|six|seven|eight|nine|\d|pound)')
@@ -51,6 +51,7 @@ def predict():
     print(sen)
     try:
         for i in range(len(sen)):
+            print(i,sen[i])
             temp = {}
             if "english" in sen[i] :
                 print("*"*20)
@@ -202,11 +203,7 @@ def predict():
                     temp["command"] = "DTMF_string"
                     temp["value"] = f"{userdetails['lname'][:3]}"
                     response['action'].append(temp)
-<<<<<<< HEAD
-                    
-=======
                                     
->>>>>>> f2a0c13fbc272c46d78108adda384c74a37fec13
                 elif "first and last" in sen[i] or "first name and last" in sen[i] or "first or last" in sen[i]:
                     print("*"*20)
                     print("Line 208 condition : From first and last, first name and last, first or last in sen[i]")
